@@ -13,10 +13,10 @@ def do(func, times, end=None, pause=0):
     if end is None:
         end = lambda x: False
 
-    for rval, i in ((func(), i) for i in xrange(times)):
+    for rval, i in ((func(), i) for i in xrange(1, times + 1)):
         if end(rval):
-            return rval
-        if i < times - 1:
+            return rval, i
+        if i < times:
             time.sleep(pause)
 
-    return None
+    return None, i
